@@ -1,0 +1,35 @@
+version: "3.9" # docker-composeのバージョン指定
+
+services: # コンテナ（サービス）定義の開始
+
+  db: # PostgreSQLのコンテナ
+    image: postgres:15 # PostgreSQLの公式イメージ（バージョン15）
+    volumes:
+      - db-data:/var/lib/postgresql/data # DBデータをコンテナ外に保存
+    environment:
+      POSTGRES_USER: postgres # DBのユーザー名
+      POSTGRES_PASSWORD: password # DBのパスワード
+
+  web: # Rails（WorkoutTrackerアプリ）のコンテナ
+    build: . # 今のディレクトリのDockerfileを使ってビルド
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails server -b 0.0.0.0"
+    # ↑ Rails起動前にPIDファイル削除 → サーバ起動（外部からアクセス可能に）
+
+    volumes:
+      - .:/rails # ホストのカレントディレクトリをコンテナの/railsにマウント（コード同期）
+
+    ports:
+      - "3000:3000" # ホストの3000番ポート → コンテナの3000番ポート
+
+    depends_on:
+      - db # dbコンテナが先に起動するようにする
+
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/workouttracker_development
+      # ↑ DB接続URL
+      # postgres://ユーザー:パスワード@ホスト名:ポート/DB名
+      # ホスト名の「db」はこのymlのサービス名と一致してるのがポイント
+      RAILS_ENV: development
+
+volumes:
+  db-data: # DBデータ保存用の名前付きボリューム（Dockerが管理）
