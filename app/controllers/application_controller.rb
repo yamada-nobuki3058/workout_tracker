@@ -1,6 +1,13 @@
 class ApplicationController < ActionController::Base
   # app/controllers/application_controller.rb
 
+  ## ログインしていないユーザーは弾く
+  before_action :authenticate_user!
+
+  # Deviseのコントローラーはログイン不要
+  skip_before_action :authenticate_user!, if: :devise_controller?
+
+  # nameパラメーターを許可
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 protected
