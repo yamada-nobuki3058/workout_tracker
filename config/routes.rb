@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :workouts, only: [:new, :create]
+  resources :workouts, only: [:index, :new, :create]
   get 'dashboard/index'
   root "home#index"
   devise_for :users
