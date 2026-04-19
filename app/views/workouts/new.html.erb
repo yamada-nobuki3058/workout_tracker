@@ -1,2 +1,6 @@
-<h1>Workouts#new</h1>
-<p>Find me in app/views/workouts/new.html.erb</p>
+<h1>New Workout</h1>
+
+<%= form_with model: @workout do |f| %>
+  <%= f.date_field :date %>
+  <%= f.submit "Create Workout" %>
+<% end %>
