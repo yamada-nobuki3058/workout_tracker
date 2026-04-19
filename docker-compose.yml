@@ -1,5 +1,3 @@
-version: "3.9" # docker-composeのバージョン指定
-
 services: # コンテナ（サービス）定義の開始
 
   db: # PostgreSQLのコンテナ
