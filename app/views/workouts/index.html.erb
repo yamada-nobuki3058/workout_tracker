@@ -1,0 +1,13 @@
+<h1>Workouts</h1>
+
+<% if @workouts.any? %>
+  <ul>
+    <% @workouts.each do |workout| %>
+      <li>
+        <%= workout.date %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No workouts yet</p>
+<% end %>
