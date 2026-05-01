@@ -13,7 +13,7 @@ class WorkoutsController < ApplicationController
     @workout = current_user.workouts.new(workout_params)
 
     if @workout.save
-      redirect_to root_path, notice: "ワークアウトを作成しました"
+      redirect_to root_path, notice: 'ワークアウトを作成しました'
     else
       render :new, status: :unprocessable_entity
     end
