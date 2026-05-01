@@ -17,7 +17,7 @@ class WorkoutsController < ApplicationController
     if @workout.save
       redirect_to root_path, notice: 'ワークアウトを作成しました'
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
