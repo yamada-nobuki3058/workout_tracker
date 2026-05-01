@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :workouts, only: %i[index new create]
   get 'dashboard/index'

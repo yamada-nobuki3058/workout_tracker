@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WorkoutsController < ApplicationController
   before_action :authenticate_user!
 
