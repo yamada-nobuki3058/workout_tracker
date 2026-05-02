@@ -12,4 +12,10 @@ RSpec.describe Workout, type: :model do
       expect(build(:workout, user: nil)).to be_invalid
     end
   end
+
+  describe 'association' do
+    it 'belongs to user' do
+      expect(described_class.reflect_on_association(:user).macro).to eq :belongs_to
+    end
+  end
 end
