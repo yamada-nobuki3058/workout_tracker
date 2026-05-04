@@ -3,6 +3,7 @@
 class ExerciseMaster < ApplicationRecord
   # 外部キーの nill を許可する
   belongs_to :user, optional: true
+  has_many :exercises
 
   enum :exercise_type, { weight: 0, cardio: 1 }
 
