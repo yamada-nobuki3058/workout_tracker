@@ -9,3 +9,9 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+ExerciseMaster.create!([
+                         { name: 'ベンチプレス', exercise_type: 0 },
+                         { name: 'スクワット', exercise_type: 0 },
+                         { name: 'ランニング', exercise_type: 1 }
+                       ])
