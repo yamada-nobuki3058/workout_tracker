@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateBodyDataMasters < ActiveRecord::Migration[7.1]
   def change
     create_table :body_data_masters do |t|
