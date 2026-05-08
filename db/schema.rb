@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_05_04_111035) do
+ActiveRecord::Schema[7.1].define(version: 2026_05_08_062017) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,6 +47,16 @@ ActiveRecord::Schema[7.1].define(version: 2026_05_04_111035) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "weight_sets", force: :cascade do |t|
+    t.bigint "exercise_id", null: false
+    t.decimal "weight", precision: 5, scale: 2, null: false
+    t.integer "reps", null: false
+    t.integer "position", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_weight_sets_on_exercise_id"
+  end
+
   create_table "workouts", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.date "date", null: false
@@ -58,5 +68,6 @@ ActiveRecord::Schema[7.1].define(version: 2026_05_04_111035) do
   add_foreign_key "exercise_masters", "users"
   add_foreign_key "exercises", "exercise_masters"
   add_foreign_key "exercises", "workouts"
+  add_foreign_key "weight_sets", "exercises"
   add_foreign_key "workouts", "users"
 end
