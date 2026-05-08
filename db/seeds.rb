@@ -15,3 +15,9 @@ ExerciseMaster.create!([
                          { name: 'スクワット', exercise_type: 0 },
                          { name: 'ランニング', exercise_type: 1 }
                        ])
+
+BodyDataMaster.create!([
+                         { name: '体重', unit: 'kg', position: 1 },
+                         { name: '体脂肪率', unit: '%', position: 2 },
+                         { name: '筋肉量', unit: 'kg', position: 3 }
+                       ])
