@@ -20,4 +20,10 @@ RSpec.describe BodyDataMaster, type: :model do
       expect(build(:body_data_master, position: nil)).to be_invalid
     end
   end
+
+  describe 'assosiation' do
+    it 'belongs_to user' do
+      expect(described_class.reflect_on_association(:user).macro).to eq :belongs_to
+    end
+  end
 end
