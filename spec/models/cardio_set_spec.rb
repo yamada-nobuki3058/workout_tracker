@@ -20,4 +20,10 @@ RSpec.describe CardioSet, type: :model do
       expect(build(:cardio_set, position: nil)).to be_invalid
     end
   end
+
+  describe 'association' do
+    it 'belongs_to exercise' do
+      expect(described_class.reflect_on_association(:exercise).macro).to eq :belongs_to
+    end
+  end
 end
