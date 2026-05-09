@@ -19,4 +19,10 @@ RSpec.describe BodyRecord, type: :model do
       expect(body_record).not_to be_valid
     end
   end
+
+  describe 'association' do
+    it 'belongs to body_data_master' do
+      expect(described_class.reflect_on_association(:body_data_master).macro).to eq :belongs_to
+    end
+  end
 end
