@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_05_08_073920) do
+ActiveRecord::Schema[7.1].define(version: 2026_05_09_061644) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,15 @@ ActiveRecord::Schema[7.1].define(version: 2026_05_08_073920) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_body_data_masters_on_user_id"
+  end
+
+  create_table "body_records", force: :cascade do |t|
+    t.bigint "body_data_master_id", null: false
+    t.date "date", null: false
+    t.decimal "value", precision: 5, scale: 2, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["body_data_master_id"], name: "index_body_records_on_body_data_master_id"
   end
 
   create_table "cardio_sets", force: :cascade do |t|
@@ -86,6 +95,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_05_08_073920) do
   end
 
   add_foreign_key "body_data_masters", "users"
+  add_foreign_key "body_records", "body_data_masters"
   add_foreign_key "cardio_sets", "exercises"
   add_foreign_key "exercise_masters", "users"
   add_foreign_key "exercises", "exercise_masters"
