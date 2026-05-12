@@ -27,7 +27,6 @@ services: # コンテナ（サービス）定義の開始
       # ↑ DB接続URL
       # postgres://ユーザー:パスワード@ホスト名:ポート/DB名
       # ホスト名の「db」はこのymlのサービス名と一致してるのがポイント
-      RAILS_ENV: development
 
 volumes:
   db-data: # DBデータ保存用の名前付きボリューム（Dockerが管理）

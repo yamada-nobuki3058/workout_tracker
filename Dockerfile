@@ -27,4 +27,4 @@ EXPOSE 3000
 # コンテナ起動時に実行するコマンド
 # - 古いPIDファイルを削除（サーバ起動エラー防止）
 # - Railsサーバを全IP（0.0.0.0）で起動
-CMD ["bash", "-c", "rm -f tmp/pids/server.pid && bundle exec rails s -b 0.0.0.0"]
+CMD ["bash", "-c", "rm -f tmp/pids/server.pid && bundle exec rails s -b 0.0.0.0 -p ${PORT:-3000}"]
