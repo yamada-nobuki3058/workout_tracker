@@ -18,7 +18,7 @@ COPY Gemfile Gemfile.lock ./
 # gemをインストール
 RUN bundle install
 # assetsを事前コンパイル
-RUN bundle exec rails assets:precompile
+RUN SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
 
 # アプリケーションのコードをすべてコピー
 COPY . .
