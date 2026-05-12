@@ -97,5 +97,5 @@ Rails.application.configure do
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
-  config.hosts << 'workout-tracker-ro69.onrender.com'
+  config.host_authorization = { exclude: ->(_request) { true } }
 end
