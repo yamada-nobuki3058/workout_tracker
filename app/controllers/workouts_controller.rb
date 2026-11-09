@@ -15,7 +15,7 @@ class WorkoutsController < ApplicationController
                          .order(:position, :id)
 
     @exercise = @workout.exercises.build
-    @exercise_masters = ExerciseMaster.order(:position, :id)
+    @exercise_masters = ExerciseMaster.order(:id)
   end
 
   def new
