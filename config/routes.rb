@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :workouts, only: %i[index new create]
+  resources :workouts do
+    resources :exercises, only: [:create]
+  end
   get 'dashboard/index'
   root 'home#index'
   devise_for :users
