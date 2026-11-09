@@ -7,6 +7,17 @@ class WorkoutsController < ApplicationController
     @workouts = current_user.workouts.order(date: :desc)
   end
 
+  def show
+    @workout = current_user.workouts.find(params[:id])
+
+    @exercises = @workout.exercises
+                         .includes(:exercise_master)
+                         .order(:position, :id)
+
+    @exercise = @workout.exercises.build
+    @exercise_masters = ExerciseMaster.order(:position, :id)
+  end
+
   def new
     @workout = current_user.workouts.new
   end
