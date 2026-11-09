@@ -10,7 +10,7 @@ services: # コンテナ（サービス）定義の開始
 
   web: # Rails（WorkoutTrackerアプリ）のコンテナ
     build: . # 今のディレクトリのDockerfileを使ってビルド
-    command: bash -c "rm -f tmp/pids/server.pid && RAILS_ENV=production bundle exec rails server -b 0.0.0.0 -p ${PORT:-3000}"
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails server -b 0.0.0.0 -p ${PORT:-3000} -e development"
     # ↑ Rails起動前にPIDファイル削除 → サーバ起動（外部からアクセス可能に）
 
     volumes:
@@ -21,12 +21,6 @@ services: # コンテナ（サービス）定義の開始
 
     depends_on:
       - db # dbコンテナが先に起動するようにする
-
-    environment:
-      DATABASE_URL: postgres://postgres:password@db:5432/workouttracker_development
-      # ↑ DB接続URL
-      # postgres://ユーザー:パスワード@ホスト名:ポート/DB名
-      # ホスト名の「db」はこのymlのサービス名と一致してるのがポイント
 
 volumes:
   db-data: # DBデータ保存用の名前付きボリューム（Dockerが管理）

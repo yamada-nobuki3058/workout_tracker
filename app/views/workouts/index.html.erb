@@ -5,6 +5,7 @@
     <% @workouts.each do |workout| %>
       <li>
         <%= workout.date %>
+        <%= link_to "詳細を見る", workout_path(workout) %>
       </li>
     <% end %>
   </ul>

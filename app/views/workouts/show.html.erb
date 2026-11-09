@@ -1,0 +1,34 @@
+<h1>Workout詳細</h1>
+
+<p>
+  日付：<%= @workout.date %>
+</p>
+
+<h2>登録済みの種目</h2>
+
+<% if @exercises.any? %>
+  <ul>
+    <% @exercises.each do |exercise| %>
+      <li><%= exercise.exercise_master.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>まだ種目が登録されていません。</p>
+<% end %>
+
+<h2>種目を追加</h2>
+
+<%= form_with model: [@workout, @exercise] do |f| %>
+  <div>
+    <%= f.label :exercise_master_id, "種目" %>
+    <%= f.collection_select :exercise_master_id,
+                            @exercise_masters,
+                            :id,
+                            :name,
+                            prompt: "種目を選択してください" %>
+  </div>
+
+  <%= f.submit "種目を追加" %>
+<% end %>
+
+<%= link_to "Workout一覧へ戻る", workouts_path %>
